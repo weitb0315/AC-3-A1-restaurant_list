@@ -4,6 +4,7 @@ const port = 3000
 
 const exphbs = require('express-handlebars')
 const restaurantList = require('./restaurant.json')
+const Restaurant = require('./models/restaurant')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -27,8 +28,12 @@ app.use(express.static('public'))
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
+// index頁面路由設定，顯示全餐廳
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurantList.results })
+  Restaurant.find()
+    .lean()
+    .then(restaurants => res.render('index', { restaurants }))
+    .catch(error => console.error(error))
 })
 
 app.get('/search', (req, res) => {
