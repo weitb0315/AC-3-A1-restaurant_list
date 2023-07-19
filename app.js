@@ -118,6 +118,15 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.error(error))
 })
 
+// delete刪除資料路由
+app.post('/restaurants/:id/delete', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.error(error))
+})
+
 // 搜尋餐廳功能，可用名字或分類搜尋
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
