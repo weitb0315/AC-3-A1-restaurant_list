@@ -1,0 +1,15 @@
+<form action="/restaurants/{{ restaurant._id }}/edit" method="POST">
+  <div class="container create">
+    <input type="text" placeholder="name required" name="name" value="{{restaurant.name}}">
+    <input type="text" placeholder="name_en required" name="name_en" value="{{restaurant.name_en}}">
+    <input type="text" placeholder="category" name="category" value="{{restaurant.category}}">
+    <input type="text" placeholder="image" name="image" value="{{restaurant.image}}">
+    <input type="text" placeholder="location required" name="location" value="{{restaurant.location}}">
+    <input type="text" placeholder="phone" name="phone" value="{{restaurant.phone}}">
+    <input type="text" placeholder="google_map required" name="google_map" value="{{restaurant.google_map}}">
+    <input type="text" placeholder="rating" name="rating" value="{{restaurant.rating}}">
+    <input type="text" placeholder="description" name="description" value="{{restaurant.description}}">
+    <button type="submit">Save</button>
+    <a href="/">Back</a>
+  </div>
+</form>

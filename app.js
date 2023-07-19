@@ -14,6 +14,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const mongoose = require('mongoose')
+const restaurant = require('./models/restaurant')
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 // 設定db
@@ -31,7 +32,7 @@ app.use(express.static('public'))
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
-// create頁面路由設定
+// create頁面路由設定，要放在detail路由前面，不然會有bug(因為new不是:id)
 app.get('/restaurants/new', (req, res) => {
   return res.render('new')
 })
@@ -40,13 +41,23 @@ app.get('/restaurants/new', (req, res) => {
 app.post('/restaurants', (req, res) => {
   const name = req.body.name
   const name_en = req.body.name_en
+  const category = req.body.category
+  const image = req.body.image
   const location = req.body.location
+  const phone = req.body.phone
   const google_map = req.body.google_map
+  const rating = req.body.rating
+  const description = req.body.description
   return Restaurant.create({
     name,
     name_en,
+    category,
+    image,
     location,
-    google_map
+    phone,
+    google_map,
+    rating,
+    description
   })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
@@ -69,6 +80,45 @@ app.get('/restaurants/:id', (req, res) => {
     .catch(error => console.error(error))
 })
 
+// edit頁面路由設定
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('edit', { restaurant }))
+    .catch(error => console.error(error))
+})
+
+// 資料庫編輯餐廳資料
+app.post('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  const name = req.body.name
+  const name_en = req.body.name_en
+  const category = req.body.category
+  const image = req.body.image
+  const location = req.body.location
+  const phone = req.body.phone
+  const google_map = req.body.google_map
+  const rating = req.body.rating
+  const description = req.body.description
+  return Restaurant.findById(id)
+    .then(restaurant => {
+      restaurant.name = name
+      restaurant.name_en = name_en
+      restaurant.category = category
+      restaurant.image = image
+      restaurant.location = location
+      restaurant.phone = phone
+      restaurant.google_map = google_map
+      restaurant.rating = rating
+      restaurant.description = description
+      return restaurant.save()
+    })
+    .then(() => res.redirect(`/restaurants/${id}`))
+    .catch(error => console.error(error))
+})
+
+// 搜尋餐廳功能，可用名字或分類搜尋
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
   const restaurants = restaurantList.results.filter(restaurant => {
