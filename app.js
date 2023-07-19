@@ -6,6 +6,9 @@ const exphbs = require('express-handlebars')
 const restaurantList = require('./restaurant.json')
 const Restaurant = require('./models/restaurant')
 
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: true }))
+
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
@@ -27,6 +30,27 @@ app.use(express.static('public'))
 // 設定樣板引擎為handlebars
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+
+// create頁面路由設定
+app.get('/restaurants/new', (req, res) => {
+  return res.render('new')
+})
+
+// 資料庫新增餐廳資料
+app.post('/restaurants', (req, res) => {
+  const name = req.body.name
+  const name_en = req.body.name_en
+  const location = req.body.location
+  const google_map = req.body.google_map
+  return Restaurant.create({
+    name,
+    name_en,
+    location,
+    google_map
+  })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
 // index頁面路由設定，顯示全餐廳
 app.get('/', (req, res) => {
