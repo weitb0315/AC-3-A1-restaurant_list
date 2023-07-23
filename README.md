@@ -1,11 +1,11 @@
 # 我的餐廳清單
 
-![index page about restaurant list](./public/images/AC 2-3 A1-1.png)
+![index page about restaurant list](./public/images/AC 2-3 A7-1.png)
 
-![show page about restaurant list](./public/images/AC 2-3 A1-2.png)
+![add new restaurant function](./public/images/AC 2-3 A7-2.png)
 
 ## 介紹
-AC 2-3 A1作業，可列舉餐廳菜單、顯示餐廳詳細資訊、連結至地圖等。
+AC 2-3 A7作業，可列舉餐廳菜單、顯示餐廳詳細資訊、連結至地圖，建立資料庫並匯入餐廳資料的json檔案，可新增餐廳、編輯餐廳資訊、刪除餐廳資料等。
 
 
 ## 功能 
@@ -14,6 +14,9 @@ AC 2-3 A1作業，可列舉餐廳菜單、顯示餐廳詳細資訊、連結至�
 - 可搜尋特定餐廳名稱或分類
 - 可瀏覽特定餐廳詳細資訊，包含類別、地址、電話、說明等
 - 餐廳地址可連結到google地圖
+- 新增餐廳
+- 編輯餐廳
+- 刪除餐廳
 
 ## 開啟專案
 
@@ -31,12 +34,6 @@ AC 2-3 A1作業，可列舉餐廳菜單、顯示餐廳詳細資訊、連結至�
   Listening on http://localhost:3000
   ```
 
-## 待解決問題
-
-![wrong search button style](./public/images/AC 2-3 A1-3(bug).png)
-
-如紅框圈選處，搜尋按鈕的樣式無法如css的設定顯示，開啟devtools並查看css設定的位置，不知為何被預設無法顯示，已自行查過可能問題或是換瀏覽器顯示，但是都無法解決，雖然並不影響搜尋功能，但尚未查出為何有此問題。
-
 ## 開發工具
 
 - Node.js 18.16.0
@@ -44,3 +41,8 @@ AC 2-3 A1作業，可列舉餐廳菜單、顯示餐廳詳細資訊、連結至�
 - Express-Handlebars 3.0.0
 - Bootstrap 5.1.3
 - Font-awesome 6.4.0
+- body-parser 1.20.2
+- dotenv 16.3.1
+
+- MongoDB
+- mongoose 5.9.7

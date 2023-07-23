@@ -1,14 +1,14 @@
 <form action="/restaurants" method="POST">
   <div class="container create">
-    <input type="text" placeholder="name required" name="name">
-    <input type="text" placeholder="name_en required" name="name_en">
-    <input type="text" placeholder="category" name="category">
-    <input type="text" placeholder="image" name="image">
-    <input type="text" placeholder="location required" name="location">
-    <input type="text" placeholder="phone" name="phone">
-    <input type="text" placeholder="google_map required" name="google_map">
-    <input type="text" placeholder="rating" name="rating">
-    <input type="text" placeholder="description" name="description">
+    <input type="text" required="required" placeholder="餐廳名，必填" name="name">
+    <input type="text" required="required" placeholder="餐廳英文名，必填" name="name_en">
+    <input type="text" placeholder="分類" name="category">
+    <input type="URL" placeholder="圖片網址" name="image">
+    <input type="text" required="required" placeholder="位置，必填" name="location">
+    <input type="tel" placeholder="電話號碼" name="phone">
+    <input type="URL" required="required" placeholder="地圖網址，必填" name="google_map">
+    <input type="number" placeholder="評分，介於0-5之間" name="rating" min="0" max="5" step="0.1">
+    <input type="text" placeholder="餐廳描述" name="description">
     <button type="submit">新增餐廳</button>
   </div>
 </form>
