@@ -4,30 +4,14 @@ const port = 3000
 
 const exphbs = require('express-handlebars')
 const restaurantList = require('./restaurant.json')
-
+const restaurant = require('./models/restaurant')
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }))
 // 載入method-override
 const methodOverride = require('method-override')
 // 引用路由器
 const routes = require('./routes')
-
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
-}
-
-const mongoose = require('mongoose')
-const restaurant = require('./models/restaurant')
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-
-// 設定db
-const db = mongoose.connection
-db.on('error', () => {
-  console.log('mongodb error!')
-})
-db.once('open', () => {
-  console.log('mongodb connected!')
-})
+require('./config/mongoose')
 
 app.use(express.static('public'))
 // 設定每一筆請求都會透過methodOverride進行前置處理
