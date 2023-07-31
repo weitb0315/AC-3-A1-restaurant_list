@@ -8,6 +8,8 @@ const Restaurant = require('./models/restaurant')
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }))
+// 載入method-override
+const methodOverride = require('method-override')
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -27,6 +29,8 @@ db.once('open', () => {
 })
 
 app.use(express.static('public'))
+// 設定每一筆請求都會透過methodOverride進行前置處理
+app.use(methodOverride('_method'))
 
 // 設定樣板引擎為handlebars
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
@@ -90,7 +94,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
 })
 
 // 資料庫編輯餐廳資料
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   const name = req.body.name
   const name_en = req.body.name_en
@@ -119,28 +123,13 @@ app.post('/restaurants/:id/edit', (req, res) => {
 })
 
 // delete刪除資料路由
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.error(error))
 })
-
-// app.post('/restaurants/:id/delete', (req, res) => {
-//   const id = req.params.id
-//   return Restaurant.findById(id)
-//     .then(restaurant => {
-//       // window.confirm('要刪除嗎');
-//       if (confirm("要刪除嗎") === true) {
-//         restaurant.remove()
-//       } else {
-//         res.redirect('/')
-//       }
-//     })
-//     .then(() => res.redirect('/'))
-//     .catch(error => console.error(error))
-// })
 
 // 搜尋餐廳功能，可用名字或分類搜尋
 app.get('/search', (req, res) => {
@@ -152,5 +141,5 @@ app.get('/search', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Express is listen on localhos:${port}`)
+  console.log(`Express is listen on localhost:${port}`)
 })
