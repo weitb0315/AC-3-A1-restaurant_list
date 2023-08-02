@@ -1,11 +1,9 @@
 # 我的餐廳清單
 
-![index page about restaurant list](./public/images/AC 2-3 A7-1.png)
-
-![add new restaurant function](./public/images/AC 2-3 A7-2.png)
+![add new restaurant function](./public/images/AC 2-3 A8-1.png)
 
 ## 介紹
-AC 2-3 A7作業，可列舉餐廳菜單、顯示餐廳詳細資訊、連結至地圖，建立資料庫並匯入餐廳資料的json檔案，可新增餐廳、編輯餐廳資訊、刪除餐廳資料等。
+AC 2-3 A8作業，重構路由及調整畫面，可列舉餐廳菜單、顯示餐廳詳細資訊、連結至地圖，建立資料庫並匯入餐廳資料的json檔案，可新增餐廳、編輯餐廳資訊、刪除餐廳資料等。
 
 
 ## 功能 
