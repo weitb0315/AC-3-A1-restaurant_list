@@ -1,20 +1,40 @@
 <!-- search bar -->
-<div class="container search-bar">
-  <div class="search-bar-outer">
-    <div class="search-bar-inner">
-      <form action="/search">
-        <h4 class="mb-2">尋找餐廳：</h4>
-        <div class="input-group">
-          <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
-            value="{{keyword}}" aria-describedby="search-button">
-          <div class="input-group-append">
-            <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
-          </div>
+<div class="container">
+  <div class="col-md-10 col-12 mx-auto">
+    <div class="row row-cols-sm-3 d-flex justify-content-between">
+
+      <div class="search-bar-outer">
+        <div class="search-bar-inner">
+          <form action="/search">
+            <div class="input-group">
+              <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類"
+                aria-label="Restaurant Name..." value="{{keyword}}" aria-describedby="search-button">
+              <div class="input-group-append">
+                <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+              </div>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
+
+      <div class="dropdown">
+        <select name="sort" id="sort" class="form-select">
+          <option>
+            {{!-- 測試可否導入到新增頁面，但是不行 --}}
+            <a href="/restaurants/new">A > Z</a>
+          </option>
+          <option>Z > A</option>
+          <option>類別</option>
+          <option>地區</option>
+        </select>
+      </div>
+
     </div>
   </div>
 </div>
+
+
+
 
 <!-- restaurant list -->
 <div class="container mt-5">
