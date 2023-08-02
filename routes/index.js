@@ -13,5 +13,8 @@ const restaurants = require('./modules/restaurants')
 // 將網址結構符合/restaurants字串開頭的request導向restaurants模組
 router.use('/restaurants', restaurants)
 
+const search = require('./modules/search')
+router.use('/search', search)
+
 // 匯出路由器
 module.exports = router

@@ -23,15 +23,6 @@ app.use(routes)
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
-// 搜尋餐廳功能，可用名字或分類搜尋
-app.get('/search', (req, res) => {
-  const keyword = req.query.keyword
-  const restaurants = restaurantList.results.filter(restaurant => {
-    return (restaurant.name.toLowerCase().includes(keyword.toLowerCase())) || (restaurant.category.toLowerCase().includes(keyword.toLowerCase()))
-  })
-  res.render('index', { restaurants: restaurants, keyword: keyword })
-})
-
 app.listen(port, () => {
   console.log(`Express is listen on localhost:${port}`)
 })
