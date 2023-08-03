@@ -16,5 +16,9 @@ router.use('/restaurants', restaurants)
 const search = require('./modules/search')
 router.use('/search', search)
 
+// 引入sort模組程式碼
+const sort = require('./modules/sort')
+router.use('/sort', sort)
+
 // 匯出路由器
 module.exports = router

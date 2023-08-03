@@ -18,15 +18,19 @@
       </div>
 
       <div class="dropdown">
-        <select name="sort" id="sort" class="form-select">
-          <option>
-            {{!-- 測試可否導入到新增頁面，但是不行 --}}
-            <a href="/restaurants/new">A > Z</a>
-          </option>
-          <option>Z > A</option>
-          <option>類別</option>
-          <option>地區</option>
-        </select>
+        <form action="/sort">
+          <div class="input-group">
+            <select name="sort" id="sort" class="form-select">
+              <option selected>sort</option>
+              <option value="A > Z">A > Z</option>
+              <option value="Z > A">Z > A</option>
+              <option value="category">類別</option>
+              <option value="location">地區</option>
+            </select>
+            <button class="btn btn-info" type="submit" id="search-button">排序</button>
+          </div>
+
+        </form>
       </div>
 
     </div>

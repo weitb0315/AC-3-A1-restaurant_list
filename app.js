@@ -6,6 +6,7 @@ const exphbs = require('express-handlebars')
 const restaurantList = require('./restaurant.json')
 const restaurant = require('./models/restaurant')
 const bodyParser = require('body-parser')
+
 app.use(bodyParser.urlencoded({ extended: true }))
 // 載入method-override
 const methodOverride = require('method-override')
