@@ -16,6 +16,7 @@ router.post('/', (req, res) => {
   const google_map = req.body.google_map
   const rating = req.body.rating
   const description = req.body.description
+  const userId = req.user._id
   return Restaurant.create({
     name,
     name_en,
@@ -25,14 +26,16 @@ router.post('/', (req, res) => {
     phone,
     google_map,
     rating,
-    description
+    description,
+    userId
   })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 // detail頁面路由設定，顯示特定餐廳
 router.get('/:id', (req, res) => {
-  const id = req.params.id
+  const userId = req.user._id
+  const _id = req.params.id
   return Restaurant.findById(id)
     .lean()
     .then(restaurant => res.render('detail', { restaurant }))
@@ -40,15 +43,16 @@ router.get('/:id', (req, res) => {
 })
 // edit頁面路由設定
 router.get('/:id/edit', (req, res) => {
-  const id = req.params.id
-  return Restaurant.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Restaurant.findOne({ _id, userId })
     .lean()
     .then(restaurant => res.render('edit', { restaurant }))
     .catch(error => console.error(error))
 })
 // 資料庫編輯餐廳資料
 router.put('/:id', (req, res) => {
-  const id = req.params.id
+  const _id = req.params.id
   const name = req.body.name
   const name_en = req.body.name_en
   const category = req.body.category
@@ -58,7 +62,8 @@ router.put('/:id', (req, res) => {
   const google_map = req.body.google_map
   const rating = req.body.rating
   const description = req.body.description
-  return Restaurant.findById(id)
+  const userId = req.user._id
+  return Restaurant.findOne({ _id, userId })
     .then(restaurant => {
       restaurant.name = name
       restaurant.name_en = name_en
@@ -71,13 +76,14 @@ router.put('/:id', (req, res) => {
       restaurant.description = description
       return restaurant.save()
     })
-    .then(() => res.redirect(`/restaurants/${id}`))
+    .then(() => res.redirect(`/restaurants/${_id}`))
     .catch(error => console.error(error))
 })
 // delete刪除資料路由
 router.delete('/:id', (req, res) => {
-  const id = req.params.id
-  return Restaurant.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Restaurant.findOne({ _id, userId })
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.error(error))
