@@ -6,7 +6,9 @@ const exphbs = require('express-handlebars')
 const restaurantList = require('./restaurant.json')
 const restaurant = require('./models/restaurant')
 const bodyParser = require('body-parser')
+const usePassport = require('./config/passport')
 
+usePassport(app)
 app.use(session({
   secret: 'ThisIsMySecret',
   resave: false,
