@@ -1,12 +1,17 @@
 const express = require('express')
 const app = express()
 const port = 3000
-
+const session = require('express-session')
 const exphbs = require('express-handlebars')
 const restaurantList = require('./restaurant.json')
 const restaurant = require('./models/restaurant')
 const bodyParser = require('body-parser')
 
+app.use(session({
+  secret: 'ThisIsMySecret',
+  resave: false,
+  saveUninitialized: true
+}))
 app.use(bodyParser.urlencoded({ extended: true }))
 // 載入method-override
 const methodOverride = require('method-override')
