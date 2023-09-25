@@ -1,6 +1,6 @@
 # 我的餐廳清單
 
-![image](./public/images/AC 3 A1-3.png)
+![image](https://github.com/weitb0315/AC-3-A1-restaurant_list/blob/main/public/images/AC%203%20A1-3.PNG)
 
 ## 介紹
 AC 3 A1作業，重構路由及調整畫面，可列舉餐廳菜單、顯示餐廳詳細資訊、連結至地圖，建立資料庫並匯入餐廳資料的json檔案，可新增餐廳、編輯餐廳資訊、刪除餐廳資料等。新增使用者註冊功能，並限制需要登入之後才能使用網站的功能
