@@ -1,10 +1,9 @@
 # 我的餐廳清單
 
-![add new restaurant function](./public/images/AC 2-3 A8-1.png)
+![image](./public/images/AC 3 A1-3.png)
 
 ## 介紹
-AC 2-3 A8作業，重構路由及調整畫面，可列舉餐廳菜單、顯示餐廳詳細資訊、連結至地圖，建立資料庫並匯入餐廳資料的json檔案，可新增餐廳、編輯餐廳資訊、刪除餐廳資料等。
-
+AC 3 A1作業，重構路由及調整畫面，可列舉餐廳菜單、顯示餐廳詳細資訊、連結至地圖，建立資料庫並匯入餐廳資料的json檔案，可新增餐廳、編輯餐廳資訊、刪除餐廳資料等。新增使用者註冊功能，並限制需要登入之後才能使用網站的功能
 
 ## 功能 
 - 顯示所有的餐廳列表
@@ -15,6 +14,8 @@ AC 2-3 A8作業，重構路由及調整畫面，可列舉餐廳菜單、顯示�
 - 新增餐廳
 - 編輯餐廳
 - 刪除餐廳
+- 使用者可註冊帳號
+- 使用者可透過Facebook登入
 
 ## 開啟專案
 
@@ -40,7 +41,14 @@ AC 2-3 A8作業，重構路由及調整畫面，可列舉餐廳菜單、顯示�
 - Bootstrap 5.1.3
 - Font-awesome 6.4.0
 - body-parser 1.20.2
-- dotenv 16.3.1
+- dotenv 8.2.0
+- bcryptjs 2.4.3
+- connect-flash 0.1.1
+- express-session 1.17.1
+- method-override 3.0.0
+- passport 0.4.1
+- passport-facebook 3.0.0
+- passport-local 1.0.0"
 
 - MongoDB
 - mongoose 5.9.7
