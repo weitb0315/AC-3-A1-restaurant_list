@@ -10,6 +10,9 @@ const usePassport = require('./config/passport')
 const methodOverride = require('method-override')
 const routes = require('./routes')
 const flash = require('connect-flash')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 require('./config/mongoose')
 // 設定樣板引擎為handlebars
